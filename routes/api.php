@@ -46,3 +46,7 @@ Route::get('/test-log', function() {
     Log::info("Teste de log");
     return ['ok'];
 });
+
+Route::get('/statefull', function() {
+    return config('sanctum.stateful');
+});
