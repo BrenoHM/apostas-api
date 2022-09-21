@@ -14,6 +14,7 @@ return [
     | To learn more: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
     |
     */
+    "Accept"=>"application/json",
 
     'paths' => ['/sanctum/csrf-cookie','login','api/*'],
 
