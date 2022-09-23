@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use MercadoPago;
 
 class NotificationController extends Controller
 {
     public function mercadoPago(Request $request)
     {
+        
+        Log::info('Rota notification');
+        return ['ok'];
         MercadoPago\SDK::setAccessToken(env('MERCADO_PAGO_SAMPLE_ACCESS_TOKEN'));
  
         $merchant_order = null;

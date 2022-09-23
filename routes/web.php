@@ -3,6 +3,7 @@
 use App\Http\Controllers\DepositController;
 use App\Http\Controllers\TimesController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +25,7 @@ Route::get('/times', [TimesController::class, 'index']);
 Route::get('/leagues', [TimesController::class, 'leagues']);
 
 Route::post('/process_payment', [TimesController::class, 'processPayment']);
+
+Route::post('/notifications', [NotificationController::class, 'mercadoPago']);
 
 require __DIR__.'/auth.php';
