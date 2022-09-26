@@ -44,6 +44,8 @@ class StoreBetRequest extends FormRequest
             "match_id" => 'required',
             "home_id" => 'required',
             "away_id" => 'required',
+            'name_home' => 'required',
+            'name_away' => 'required',
             "odd" => 'required',
             "bet" => 'required',
             "bet_value" => 'required',

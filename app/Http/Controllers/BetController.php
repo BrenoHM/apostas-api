@@ -19,10 +19,10 @@ class BetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $response = Bet::where('user_id', Auth::id())
-                        ->where('status', 'opened')
+                        ->where('status', $request->filter ?? 'opened')
                         ->get();
                         
         return Helper::responseJson($response);
