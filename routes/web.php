@@ -22,10 +22,11 @@ Route::get('/', function () {
 
 Route::get('/times', [TimesController::class, 'index']);
 
-Route::get('/leagues', [TimesController::class, 'leagues']);
-
 Route::post('/process_payment', [TimesController::class, 'processPayment']);
 
 Route::post('/notifications', [NotificationController::class, 'mercadoPago']);
+
+//rora para testar a rotina de processamento de bets
+Route::get('/process_bets', [TimesController::class, 'processBets']);
 
 require __DIR__.'/auth.php';

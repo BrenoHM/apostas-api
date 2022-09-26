@@ -6,7 +6,7 @@ namespace App\Helper;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Validator;
-
+use Illuminate\Support\Facades\Cache;
 
 class Helper
 {
@@ -36,6 +36,18 @@ class Helper
     public static function isBase64($data)
     {
       return strpos($data, 'data:image') !== false;
+    }
+
+    public static function matchDetalhe($id)
+    {
+        $results = Cache::remember('match-' . $id, 60 * 60 * 24, function() use($id) {
+            $client = new \GuzzleHttp\Client();
+            $res = $client->get('https://api.football-data-api.com/match?key=example&match_id='.$id);
+            $matches = json_decode($res->getBody()->getContents());
+            return $matches->data;
+        });
+        
+        return $results;
     }
 
 }
