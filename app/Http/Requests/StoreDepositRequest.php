@@ -36,8 +36,10 @@ class StoreDepositRequest extends FormRequest
     public function rules()
     {
         return [
+            "gateway_id" => 'required',
             "user_id" => 'required',
             "value" => 'required',
+            "method" => 'required',
             "result" => 'required',
             "status" => 'required',
         ];

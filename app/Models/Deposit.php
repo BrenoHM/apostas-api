@@ -10,8 +10,10 @@ class Deposit extends Model
     use HasFactory;
 
     protected $fillable = [
+        'gateway_id',
         'user_id',
         'value',
+        'method',
         'result',
         'status'
     ];

@@ -23,6 +23,7 @@ class BetController extends Controller
     {
         $response = Bet::where('user_id', Auth::id())
                         ->where('status', $request->filter ?? 'opened')
+                        ->whereBetween('created_at', [$request->start, $request->end])
                         ->get();
                         
         return Helper::responseJson($response);

@@ -60,6 +60,83 @@ class TimesController extends Controller
         return $response;
     }
 
+    public function processPaymentPix(Request $request)
+    {
+        MercadoPago\SDK::setAccessToken(env('MERCADO_PAGO_SAMPLE_ACCESS_TOKEN'));
+
+        $payment = new MercadoPago\Payment();
+        $payment->transaction_amount = $request->transactionAmount;
+        $payment->description = $request->description;
+        $payment->payment_method_id = "pix";
+        $payment->payer = array(
+            "email" => $request->email,
+            "first_name" => $request->payerFirstName,
+            "last_name" => $request->payerLastName,
+            "identification" => array(
+                "type" => $request->identificationType,
+                "number" => $request->identificationNumber
+            ),
+            // "address"=>  array(
+            //     "zip_code" => "06233200",
+            //     "street_name" => "Av. das Nações Unidas",
+            //     "street_number" => "3003",
+            //     "neighborhood" => "Bonfim",
+            //     "city" => "Osasco",
+            //     "federal_unit" => "SP"
+            // )
+        );
+
+        $payment->save();
+
+        $response = array(
+            'id' => $payment->id,
+            'status' => $payment->status,
+            'status_detail' => $payment->status_detail,
+            'transaction_details' => $payment->transaction_details,
+            'point_of_interaction' => $payment->point_of_interaction
+        );
+
+        return $response;
+    }
+
+    public function processPaymentBill(Request $request)
+    {
+        MercadoPago\SDK::setAccessToken(env('MERCADO_PAGO_SAMPLE_ACCESS_TOKEN'));
+
+        $payment = new MercadoPago\Payment();
+        $payment->transaction_amount = $request->transactionAmount;
+        $payment->description = $request->description;
+        $payment->payment_method_id = "bolbradesco";
+        $payment->payer = array(
+            "email" => $request->email,
+            "first_name" => $request->payerFirstName,
+            "last_name" => $request->payerLastName,
+            "identification" => array(
+                "type" => $request->identificationType,
+                "number" => $request->identificationNumber
+            ),
+            // "address"=>  array(
+            //     "zip_code" => "06233200",
+            //     "street_name" => "Av. das Nações Unidas",
+            //     "street_number" => "3003",
+            //     "neighborhood" => "Bonfim",
+            //     "city" => "Osasco",
+            //     "federal_unit" => "SP"
+            // )
+        );
+
+        $payment->save();
+
+        $response = array(
+            'id' => $payment->id,
+            'status' => $payment->status,
+            'status_detail' => $payment->status_detail,
+            'transaction_details' => $payment->transaction_details,
+        );
+
+        return $response;
+    }
+
     //teste de processamento de bets
     public function processBets()
     {
