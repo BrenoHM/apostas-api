@@ -22,11 +22,11 @@ Route::get('/', function () {
 
 Route::get('/times', [TimesController::class, 'index']);
 
-Route::post('/process_payment', [TimesController::class, 'processPayment']);
+Route::post('/process_payment', [DepositController::class, 'processPayment']);
 
-Route::post('/process_payment_pix', [TimesController::class, 'processPaymentPix']);
+Route::post('/process_payment_pix', [DepositController::class, 'processPaymentPix']);
 
-Route::post('/process_payment_bill', [TimesController::class, 'processPaymentBill']);
+Route::post('/process_payment_bill', [DepositController::class, 'processPaymentBill']);
 
 Route::post('/notifications', [NotificationController::class, 'mercadoPago']);
 

@@ -1,0 +1,1 @@
+* * * * * root echo "Exemplo de Comando" >> /var/log/cron.log 2>&1

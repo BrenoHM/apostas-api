@@ -13,8 +13,13 @@ ENV TZ=UTC
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-# RUN apt-get update \
-#     && apt-get install -y cron
+RUN apt-get update \
+    && apt-get install -y cron
+
+COPY crontab /etc/cron.d/crontab
+RUN chmod 0644 /etc/cron.d/crontab \
+    && crontab /etc/cron.d/crontab \
+    && touch /var/log/cron.log
 
 # Copy hello-cron file to the cron.d directory
 #COPY hello-cron /etc/cron.d/hello-cron
@@ -37,8 +42,8 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 #COPY sail /var/spool/cron/crontabs/sail
 
-COPY scheduler/entrypoint.sh /opt/bin/entrypoint.sh
-RUN chmod +x /opt/bin/entrypoint.sh
+# COPY scheduler/entrypoint.sh /opt/bin/entrypoint.sh
+# RUN chmod +x /opt/bin/entrypoint.sh
 
 RUN apt-get update \
     && apt-get install -y gnupg gosu curl ca-certificates zip unzip git supervisor sqlite3 libcap2-bin libpng-dev python2 \
