@@ -17,7 +17,7 @@ use App\Http\Controllers\NotificationController;
 */
 
 Route::get('/', function () {
-    return ['Laravel' => app()->version()];
+    return ['Laravel 9' => app()->version()];
 });
 
 Route::get('/times', [TimesController::class, 'index']);
